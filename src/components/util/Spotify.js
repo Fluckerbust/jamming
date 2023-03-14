@@ -1,8 +1,8 @@
-import { SearchBar } from "../search/searchbar/searchbar";
+
 
 var accessToken = ''
 var clientId = "432cb9cccf7f41d28b73b39ff760927b"
-const redirectURI ="http://10.0.0.203:3000/"
+const redirectURI ="http://determined-cent.surge.sh"
 
 const Spotify = {
     getAccessToken() {
@@ -10,7 +10,7 @@ const Spotify = {
             return accessToken;
         }
 
-        const accessTokenMatch = window.location.href.match(/accessToken=([^&]*)/);
+        const accessTokenMatch = window.location.href.match(/access_token=([^&]*)/);
         const expiresInMatch = window.location.href.match(/expires_in=([^&]*)/);
 
         if (accessTokenMatch && expiresInMatch) {
@@ -29,7 +29,7 @@ const Spotify = {
         return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`
-        },
+        }
             
     }).then(response => {
         return response.json();
